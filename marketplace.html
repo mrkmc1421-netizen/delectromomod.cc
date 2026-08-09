@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DelectromoMod Plugin Marketplace ⚡</title>
+<style>
+  body {
+    margin: 0;
+    background: #0a0a1a;
+    color: white;
+    font-family: Segoe UI, sans-serif;
+  }
+
+  header {
+    padding: 30px;
+    text-align: center;
+    background: linear-gradient(135deg, #5a00ff, #ff00c8, #00e1ff);
+    background-size: 400% 400%;
+    animation: pulseBG 12s ease infinite;
+  }
+
+  @keyframes pulseBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 3rem;
+    text-shadow: 0 0 20px #ffffffaa;
+  }
+
+  #search {
+    width: 80%;
+    margin: 20px auto;
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.1rem;
+  }
+
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .plugin {
+    background: #111;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    box-shadow: 0 0 20px #5a00ff55;
+    transition: 0.2s;
+  }
+
+  .plugin:hover {
+    transform: scale(1.03);
+    background: #1a1a1a;
+  }
+
+  .plugin h2 {
+    margin-top: 0;
+    color: #00e1ff;
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ff00c8;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+
+  .btn:hover {
+    background: #ff33dd;
+    transform: scale(1.05);
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>⚡ DelectromoMod extensions</h1>
+</header>
+
+<input id="search" type="text" placeholder="Search plugins...">
+
+<div id="grid"></div>
+
+<script>
+  const plugins = [
+    { name: "ElectroFX", desc: "Lightning, sparks, neon trails." },
+    { name: "VoltPhysics", desc: "Electric physics engine." },
+    { name: "ShockSprites", desc: "Sprite-wide electric effects." },
+    { name: "WireNet", desc: "Networking for multiplayer." },
+    { name: "ElectroUI", desc: "Custom UI components." },
+    { name: "DelQuake Tools", desc: "Stage-wide FX helpers." },
+    { name: "RunJS", desc: "Extra JS utilities." },
+    { name: "NeonGlow", desc: "Glow filters and bloom effects." },
+    { name: "PulseAudio", desc: "Electric sound effects." },
+    { name: "WaveRender", desc: "Wave distortion renderer." }
+  ];
+
+  const grid = document.getElementById("grid");
+  const search = document.getElementById("search");
+
+  function render() {
+    grid.innerHTML = "";
+    const term = search.value.toLowerCase();
+
+    plugins
+      .filter(p => p.name.toLowerCase().includes(term))
+      .forEach(p => {
+        const card = document.createElement("div");
+        card.className = "plugin";
+        card.innerHTML = `
+          <h2>${p.name}</h2>
+          <p>${p.desc}</p>
+          <a class="btn" href="#">Install</a>
+        `;
+        grid.appendChild(card);
+      });
+  }
+
+  search.addEventListener("input", render);
+  render();
+</script>
+
+</body>
+</html>
