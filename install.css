@@ -1,0 +1,49 @@
+<div style="text-align:center; padding:40px;">
+
+  <h2 style="font-size:2.5rem; color:#00e1ff; text-shadow:0 0 20px #00e1ff88;">
+    ⚡ Download DelectromoMod
+  </h2>
+
+  <p style="opacity:0.8; margin-bottom:30px;">
+    Choose your platform and electrify your creativity.
+  </p>
+
+  <!-- Windows Download -->
+  <a href="downloads/DelectromoMod-Setup.exe" 
+     class="download-btn" 
+     style="
+       display:inline-block;
+       margin:15px;
+       padding:15px 30px;
+       background:#ff00c8;
+       color:white;
+       border-radius:10px;
+       font-size:1.3rem;
+       text-decoration:none;
+       font-weight:bold;
+       box-shadow:0 0 20px #ff00c855;
+       transition:0.2s;
+     ">
+    ⚡ Download for Windows (.exe)
+  </a>
+
+  <!-- MacOS Download -->
+  <a href="downloads/DelectromoMod-Mac.zip" 
+     class="download-btn" 
+     style="
+       display:inline-block;
+       margin:15px;
+       padding:15px 30px;
+       background:#5a00ff;
+       color:white;
+       border-radius:10px;
+       font-size:1.3rem;
+       text-decoration:none;
+       font-weight:bold;
+       box-shadow:0 0 20px #5a00ff55;
+       transition:0.2s;
+     ">
+    ⚡ Download for MacOS (.zip)
+  </a>
+
+</div>
