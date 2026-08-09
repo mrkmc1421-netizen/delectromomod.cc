@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DelectromoMod Editor ⚡</title>
+<style>
+  body {
+    margin: 0;
+    background: #0a0a1a;
+    color: white;
+    font-family: Segoe UI, sans-serif;
+    display: flex;
+    height: 100vh;
+  }
+
+  #sidebar {
+    width: 260px;
+    background: #111;
+    padding: 15px;
+    overflow-y: scroll;
+    border-right: 2px solid #333;
+  }
+
+  .block {
+    background: #222;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    cursor: grab;
+    border: 1px solid #444;
+    transition: 0.2s;
+  }
+
+  .block:hover {
+    background: #333;
+    transform: scale(1.03);
+  }
+
+  #workspace {
+    flex: 1;
+    position: relative;
+    background: #0f0f1f;
+  }
+
+  #emptyMessage {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0.7;
+    font-size: 1.3rem;
+  }
+
+  .dropped {
+    position: absolute;
+    background: #222;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    cursor: grab;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="sidebar">
+  <h2>⚡ Blocks</h2>
+  <div id="blockList"></div>
+</div>
+
+<div id="workspace">
+  <div id="emptyMessage">
+    🌩️<br>
+    No blocks yet<br>
+    Drag blocks to build your first script.
+  </div>
+</div>
+
+<script>
+  const blockList = document.getElementById("blockList");
+  const workspace = document.getElementById("workspace");
+  const emptyMessage = document.getElementById("emptyMessage");
+
+  // Generate 50 blocks
+  for (let i = 1; i <= 50; i++) {
+    const block = document.createElement("div");
+    block.className = "block";
+    block.textContent = "Block " + i;
+    block.draggable = true;
+
+    block.addEventListener("dragstart", e => {
+      e.dataTransfer.setData("text/plain", block.textContent);
+    });
+
+    blockList.appendChild(block);
+  }
+
+  workspace.addEventListener("dragover", e => {
+    e.preventDefault();
+  });
+
+  workspace.addEventListener("drop", e => {
+    e.preventDefault();
+    const text = e.dataTransfer.getData("text/plain");
+
+    const newBlock = document.createElement("div");
+    newBlock.className = "dropped";
+    newBlock.textContent = text;
