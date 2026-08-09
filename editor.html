@@ -138,3 +138,31 @@ eventBlocks.forEach(text => {
 
   blockList.appendChild(block);
 });
+<button id="stormBtn" style="position:absolute; top:10px; left:10px;">⚡ Storm</button>
+<button id="stopBtn" style="position:absolute; top:60px; left:10px;">🛑 Stop</button>
+  const eventListeners = {
+  storm: [],
+  stop: []
+};
+  workspace.addEventListener("drop", e => {
+  e.preventDefault();
+  const text = e.dataTransfer.getData("text/plain");
+
+  const newBlock = document.createElement("div");
+  newBlock.className = "dropped";
+  newBlock.textContent = text;
+
+  newBlock.style.left = e.clientX - 80 + "px";
+  newBlock.style.top = e.clientY - 20 + "px";
+
+  workspace.appendChild(newBlock);
+  emptyMessage.style.display = "none";
+
+  // EVENT REGISTRATION
+  if (text.includes("When Storm Clicked")) {
+    eventListeners.storm.push(newBlock);
+  }
+  if (text.includes("When Stop Clicked")) {
+    eventListeners.stop.push(newBlock);
+  }
+});
