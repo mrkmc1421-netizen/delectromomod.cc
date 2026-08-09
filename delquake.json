@@ -1,0 +1,76 @@
+<script>
+  const blockList = document.getElementById("blockList");
+  const workspace = document.getElementById("workspace");
+  const emptyMessage = document.getElementById("emptyMessage");
+
+  // DelQuake special blocks
+  const delQuakeBlocks = [
+    "DelQuake: Shake Stage",
+    "DelQuake: Warp Colors",
+    "DelQuake: Flash Lightning",
+    "DelQuake: Screen Blur",
+    "DelQuake: Chromatic Shift",
+    "DelQuake: Earthquake Pulse",
+    "DelQuake: Neon Storm",
+    "DelQuake: Glitch Burst"
+  ];
+
+  // Add DelQuake header
+  const dqHeader = document.createElement("h3");
+  dqHeader.textContent = "🌩️ DelQuake FX";
+  dqHeader.style.marginTop = "15px";
+  blockList.appendChild(dqHeader);
+
+  // Render DelQuake blocks
+  delQuakeBlocks.forEach(text => {
+    const block = document.createElement("div");
+    block.className = "block";
+    block.textContent = text;
+    block.draggable = true;
+
+    block.addEventListener("dragstart", e => {
+      e.dataTransfer.setData("text/plain", block.textContent);
+    });
+
+    blockList.appendChild(block);
+  });
+
+  // Divider
+  const divider = document.createElement("h3");
+  divider.textContent = "Blocks";
+  divider.style.marginTop = "20px";
+  blockList.appendChild(divider);
+
+  // Generate 50 generic blocks
+  for (let i = 1; i <= 50; i++) {
+    const block = document.createElement("div");
+    block.className = "block";
+    block.textContent = "Block " + i;
+    block.draggable = true;
+
+    block.addEventListener("dragstart", e => {
+      e.dataTransfer.setData("text/plain", block.textContent);
+    });
+
+    blockList.appendChild(block);
+  }
+
+  workspace.addEventListener("dragover", e => {
+    e.preventDefault();
+  });
+
+  workspace.addEventListener("drop", e => {
+    e.preventDefault();
+    const text = e.dataTransfer.getData("text/plain");
+
+    const newBlock = document.createElement("div");
+    newBlock.className = "dropped";
+    newBlock.textContent = text;
+
+    newBlock.style.left = e.clientX - 80 + "px";
+    newBlock.style.top = e.clientY - 20 + "px";
+
+    workspace.appendChild(newBlock);
+    emptyMessage.style.display = "none";
+  });
+</script>
